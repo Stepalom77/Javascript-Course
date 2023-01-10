@@ -17,6 +17,49 @@ objToArray(person)
 
 // Ejercicio 2
 
+//This en el contexto global, se refiere al objeto global
+console.log(this)
+
+//En una función this se refiere al objeto global
+function newFunction(){
+  return this
+}
+
+newFunction()
+
+//Si la función esta en stric mode , this será undefined
+function secondFunction(){
+  'use strict'
+  return this
+}
+
+secondFunction()
+
+//En un método , this se refiere al objeto al cual pertenece, en este caso newObj
+
+let newObj = {
+  hello: 'world',
+  saying(){console.log(this)}
+}
+
+newObj.saying()
+
+//En una arrow function, this se refiere al contexto de la función, en este caso será el objeto global
+
+let secondObj = {
+  new: 'hello',
+  hello:() => {console.log(this)}
+}
+
+secondObj.hello()
+
+
+//Si se tratase de un evento, this se refiere al elemento que recibe el evento, en este caso será el lemento con id fakeId.
+const fakeElement = document.getElementById('fakeId')
+fakeElement.addEventListener('click', () => {
+  console.log(this)
+})
+
 // Ejercicio 3
 class InvertirCadena {
   constructor(cadenaInvertir = ''){
